@@ -1,12 +1,13 @@
 package com.hrms.hrms.business.concretes;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.hrms.hrms.business.abstracts.JobPositionsService;
-import com.hrms.hrms.core.JobPositionNotFoundException;
+import com.hrms.hrms.core.utilities.requireds.JobTitleFieldManager;
+import com.hrms.hrms.core.utilities.results.DataResult;
+import com.hrms.hrms.core.utilities.results.Result;
+import com.hrms.hrms.core.utilities.results.SuccessDataResult;
 import com.hrms.hrms.dataAccess.abstracts.JobPositionsDao;
 import com.hrms.hrms.entities.concretes.JobPositions;
 
@@ -15,6 +16,7 @@ public class JobPositionsManager implements JobPositionsService{
 
 	private JobPositionsDao jobPositionsDao;
 	
+		
 	@Autowired
 	public JobPositionsManager(JobPositionsDao jobPositionsDao) {
 		super();
@@ -23,40 +25,15 @@ public class JobPositionsManager implements JobPositionsService{
 	
 
 	@Override
-	public List<JobPositions> getAll() {
-		return this.jobPositionsDao.findAll();
+	public DataResult<List<JobPositions>> getAll() {
+		return new SuccessDataResult<List<JobPositions>>(this.jobPositionsDao.findAll(),"Data Listelendi");
 	}
 
 
 	@Override
-	public JobPositions newJobPositions(JobPositions newJobPositions) {
-		return jobPositionsDao.save(newJobPositions);
-	}
-
-
-	@Override
-	public JobPositions getOne(int id) {
-		return jobPositionsDao.findById(id)
-				 .orElseThrow(() -> new JobPositionNotFoundException(id));
-			      
-	}
-
-
-	@Override
-	public JobPositions updateJobPositions(JobPositions updateJobPositions) {
-		return jobPositionsDao.findById(updateJobPositions.getId())
-				.map(jobs -> {jobs.setPosition(updateJobPositions.getPosition());
-				return jobPositionsDao.save(jobs);
-		      }).orElseGet(() -> {updateJobPositions.setId(updateJobPositions.getId());
-		      return jobPositionsDao.save(updateJobPositions);
-		      });
-	}
-
-
-	@Override
-	public String deleteJobPositions(int id) {
-		jobPositionsDao.deleteById(id);
-		return "ID = " + id + "olan kayıt silindi";
-	}
+	public Result add(JobPositions newJobPositions) {
+		JobTitleFieldManager requiredFieldsManager = new JobTitleFieldManager(this.jobPositionsDao);
+		return requiredFieldsManager.JobPositionControl(newJobPositions);
+		}
 
 }

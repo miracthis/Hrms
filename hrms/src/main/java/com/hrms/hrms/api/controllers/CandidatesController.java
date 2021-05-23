@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hrms.hrms.business.abstracts.CandidatesService;
-
+import com.hrms.hrms.core.utilities.results.Result;
 import com.hrms.hrms.entities.concretes.Candidates;
 
 
@@ -36,15 +36,10 @@ public class CandidatesController {
 	}
 	
 	@PostMapping("/add")
-	public String newCandidate(@RequestBody Candidates newCandidate){
+	public Result newCandidate(@RequestBody Candidates newCandidate){
 		
-		if (candidatesService.newCandidate(newCandidate) == "Kayıt OK" ) {
-			return "Mernis Doğrulaması Başarılı. Kayıt Database'e aktarıldı.";
-		}else {
-			return "Kayıt Başarısız. Mernis Doğrulaması Geçerli Değil";
-		}
-		
-		
+		return candidatesService.add(newCandidate);
 	}
 	
+		
 }

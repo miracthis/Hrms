@@ -4,6 +4,6 @@ import com.hrms.hrms.entities.concretes.JobPositions;
 
 public interface JobPositionsDao extends JpaRepository<JobPositions,Integer> {
 
-	
+	boolean existsByPosition(String position);
 		
 }

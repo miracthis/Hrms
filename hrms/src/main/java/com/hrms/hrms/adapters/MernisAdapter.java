@@ -18,22 +18,15 @@ public class MernisAdapter{
 		try {
 			kpsPublic = new KPSPublicSoapProxy();
 			boolean durum = kpsPublic.TCKimlikNoDogrula(
-					Long.parseLong(candidate.getNational_identity()), 
-							candidate.getName(), 
-							candidate.getSurname(), 
+					Long.parseLong(candidate.getNationalIdentity()), 
+							candidate.getName().toUpperCase(), 
+							candidate.getSurname().toUpperCase(), 
 							Integer.parseInt(candidate.getBirth_year()));
-			
 			return durum;
-			
 		} catch (RemoteException | NumberFormatException e1) {
-			
 			e1.printStackTrace();
 		}
-				
-		
-		
-		return false;
-		
+			return false;
 	}
 
 }
