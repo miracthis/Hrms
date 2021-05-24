@@ -25,6 +25,7 @@ public class CandidateFieldManager {
 		this.userDao = userDao;
 	}
 
+	
 
 	public Result candidateControl(Candidate candidate) {
 		

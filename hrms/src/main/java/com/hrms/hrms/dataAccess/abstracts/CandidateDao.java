@@ -7,5 +7,6 @@ import org.springframework.stereotype.Repository;
 public interface CandidateDao extends JpaRepository<Candidate, Integer>{
 		
 	boolean existsByNationalIdentity(String national_identity);
+	
 		
 }

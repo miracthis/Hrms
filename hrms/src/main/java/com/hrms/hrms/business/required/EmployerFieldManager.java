@@ -24,7 +24,7 @@ public class EmployerFieldManager {
 	
 	public Result employerControl(Employer employer) {
 		String[] splitMail = employer.getMail().split("@");
-		if (splitMail[1].equals(employer.getWebAddress()) == false) {
+		if (!splitMail[1].equals(employer.getWebAddress())) {
 			return new ErrorResult("Yalnızca Şirket Web Sitenizin Uzantısına Sahip Bir Mail Adresiyle Kayıt Olabilirsiniz");
 		}
 		if (this.userDao.existsByMail(employer.getMail())) {

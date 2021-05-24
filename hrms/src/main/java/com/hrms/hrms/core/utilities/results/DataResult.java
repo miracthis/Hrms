@@ -23,3 +23,4 @@ public class DataResult<T> extends Result {
 	}
 	
 }
+

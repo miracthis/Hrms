@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -19,6 +21,7 @@ import lombok.NoArgsConstructor;
 public class Candidate extends User {
 	
 	@NotBlank(message="İsim Alanı Boş olamaz")
+	@Size(min = 3, message = "İsim alanında en az 3 karakter kullanmanız gerekiyor") 
 	@Column(name="name")
 	private String name;
 	
