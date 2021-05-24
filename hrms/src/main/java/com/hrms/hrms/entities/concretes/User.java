@@ -8,7 +8,9 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
-
+import javax.persistence.Transient;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import lombok.Data;
 
 
@@ -23,11 +25,18 @@ public class User {
 	@Column(name="id")
 	private int id;
 	
+	@Email(message = "Lütfen Geçerli Bir Mail Adresi Giriniz")
+	@NotBlank(message="Mail Alanı Boş olamaz")
 	@Column(name="mail")
 	private String mail;
 	
+	@NotBlank(message="Şifre Alanı Boş olamaz")
 	@Column(name="password")
 	private String password;
+	
+	@NotBlank(message="Şifre Alanı Boş olamaz")
+	@Transient
+	private String passwordRepeat;
 	
 	
 

@@ -1,18 +1,13 @@
 package com.hrms.hrms.adapters;
-
 import java.rmi.RemoteException;
-
-
-
-import com.hrms.hrms.entities.concretes.Candidates;
-
+import com.hrms.hrms.entities.concretes.Candidate;
 import tr.gov.nvi.tckimlik.WS.KPSPublicSoapProxy;
 
 
 public class MernisAdapter{
 	
 	
-	public boolean TCKontrol(Candidates candidate) {
+	public boolean TCKontrol(Candidate candidate) {
 		
 		KPSPublicSoapProxy kpsPublic;
 		try {
