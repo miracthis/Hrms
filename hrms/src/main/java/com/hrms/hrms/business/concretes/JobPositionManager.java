@@ -1,39 +1,35 @@
 package com.hrms.hrms.business.concretes;
-
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.hrms.hrms.business.abstracts.FieldService;
 import com.hrms.hrms.business.abstracts.JobPositionService;
-import com.hrms.hrms.business.required.JobTitleFieldManager;
 import com.hrms.hrms.core.utilities.results.DataResult;
 import com.hrms.hrms.core.utilities.results.Result;
-import com.hrms.hrms.core.utilities.results.SuccessDataResult;
-import com.hrms.hrms.dataAccess.abstracts.JobPositionDao;
 import com.hrms.hrms.entities.concretes.JobPosition;
 
 @Service
-public class JobPositionManager implements JobPositionService{
+public class JobPositionManager implements JobPositionService {
 
-	private JobPositionDao jobPositionsDao;
+	private FieldService<JobPosition> controllerService;
 	
 		
 	@Autowired
-	public JobPositionManager(JobPositionDao jobPositionsDao) {
+	public JobPositionManager(FieldService<JobPosition> controllerService) {
 		super();
-		this.jobPositionsDao = jobPositionsDao;
+		this.controllerService = controllerService;
 	}
 	
 
 	@Override
 	public DataResult<List<JobPosition>> getAll() {
-		return new SuccessDataResult<List<JobPosition>>(this.jobPositionsDao.findAll(),"Data Listelendi");
+		return controllerService.getAll();
 	}
 
 
 	@Override
 	public Result add(JobPosition newJobPositions) {
-		JobTitleFieldManager requiredFieldsManager = new JobTitleFieldManager(this.jobPositionsDao);
-		return requiredFieldsManager.jobPositionControl(newJobPositions);
+		return controllerService.verifyData(newJobPositions);
 		}
 
 }
