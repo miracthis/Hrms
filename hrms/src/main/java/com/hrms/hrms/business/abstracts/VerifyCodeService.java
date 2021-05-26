@@ -7,7 +7,7 @@ import com.hrms.hrms.entities.concretes.User;
 public interface VerifyCodeService {
 
 	String createVerifyCode(User user);
-	Result sendMail(String mail);
+	void sendMail(String mail);
 	Result verifyUser(String code); 
 	
 	

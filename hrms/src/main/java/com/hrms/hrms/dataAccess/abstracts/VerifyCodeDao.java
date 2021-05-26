@@ -6,5 +6,6 @@ import com.hrms.hrms.entities.concretes.VerifyCode;
 public interface VerifyCodeDao extends JpaRepository<VerifyCode, Integer>{
 
 	VerifyCode getByVerifyCode(String Code);
+	boolean existsByVerifyCode(String Code);
 
 }

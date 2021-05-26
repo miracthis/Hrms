@@ -31,6 +31,7 @@ public class VerifyCode {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
+	@JsonIgnore
 	private int id;
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -39,15 +40,19 @@ public class VerifyCode {
 	@JsonIgnore
 	private User userId;
 	
+	@JsonIgnore
 	@Column(name="verify_code")
 	private String verifyCode;
 	
+	@JsonIgnore
 	@Column(name="is_confirmed")
 	private boolean isConfirmed;
 	
+	@JsonIgnore
 	@Column(name="created_date")
 	private Date createdDate;
 	
+	@JsonIgnore
 	@Column(name="confirmed_date")
 	private Date confirmedDate;
 

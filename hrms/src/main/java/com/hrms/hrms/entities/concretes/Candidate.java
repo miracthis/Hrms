@@ -25,11 +25,13 @@ public class Candidate extends User {
 	@Column(name="name")
 	private String name;
 	
+		
 	@NotBlank(message="Soyisim Alanı Boş olamaz")
 	@Column(name="surname")
 	private String surname;
 	
 	@NotBlank(message="TC Kimlik Numarası Alanı Boş Olamaz")
+	@Size(min = 11, max=11, message = "TCKimlik No 11 hane olmalıdır")
 	@Column(name="national_identity")
 	private String nationalIdentity;
 	

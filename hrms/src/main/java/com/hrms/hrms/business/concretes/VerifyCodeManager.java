@@ -1,10 +1,13 @@
 package com.hrms.hrms.business.concretes;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hrms.hrms.business.abstracts.VerifyCodeService;
+import com.hrms.hrms.core.utilities.results.ErrorResult;
 import com.hrms.hrms.core.utilities.results.Result;
 import com.hrms.hrms.core.utilities.results.SuccessResult;
 import com.hrms.hrms.dataAccess.abstracts.VerifyCodeDao;
@@ -25,34 +28,33 @@ public class VerifyCodeManager implements VerifyCodeService {
 	@Override
 	public String createVerifyCode(User user) {
 		String vCode = UUID.randomUUID().toString();
-		
 		VerifyCode Code = new VerifyCode();
+		LocalDate e = (LocalDate.now());
 		Code.setUserId(user);
+		Code.setCreatedDate(Date.valueOf(e));
 		Code.setVerifyCode(UUID.randomUUID().toString());
-		Code.setCreatedDate(null);
-		Code.setConfirmedDate(null);
 		this.verifyCodeDao.save(Code);
-		
 		return vCode;
 	}
 
 	@Override
-	public Result sendMail(String mail) {
-		System.out.println("Mail Gönderildi : " + mail);
-		System.out.println("Doğrulama Linki: http://localhost:8080/valid/27/833b120a-4b62-48f7-8d83-73074fe26e2d" );
-		return null;
+	public void sendMail(String mail) {
+		System.out.println("Doğrulama Maili Gönderildi : " + mail);
 	}
 
 	@Override
 	public Result verifyUser(String code) {
+		
+		if (!this.verifyCodeDao.existsByVerifyCode(code)) {
+			return new ErrorResult("Hatalı Doğrulama İşlemi");
+		}
 		VerifyCode newVerifyCode = verifyCodeDao.getByVerifyCode(code);
-		newVerifyCode.setId(newVerifyCode.getId());
+		LocalDate e = (LocalDate.now());
 		newVerifyCode.setConfirmed(true);
-		newVerifyCode.setId(newVerifyCode.getId());
-		newVerifyCode.setUserId(newVerifyCode.getUserId());
-		newVerifyCode.setVerifyCode(newVerifyCode.getVerifyCode());
+		newVerifyCode.setConfirmedDate(Date.valueOf(e));
 		verifyCodeDao.save(newVerifyCode);
-		return new SuccessResult("Doğrulama Başarılı");
+		return new SuccessResult("Doğrulama Başarılı");	
+		
 	}
 
 	
