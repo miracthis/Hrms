@@ -9,6 +9,5 @@ public interface VerifyCodeService {
 	String createVerifyCode(User user);
 	void sendMail(String mail);
 	Result verifyUser(String code); 
-	
-	
+		
 }

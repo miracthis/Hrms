@@ -2,10 +2,8 @@ package com.hrms.hrms.business.concretes;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.UUID;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.hrms.hrms.business.abstracts.VerifyCodeService;
 import com.hrms.hrms.core.utilities.results.ErrorResult;
 import com.hrms.hrms.core.utilities.results.Result;
@@ -39,6 +37,7 @@ public class VerifyCodeManager implements VerifyCodeService {
 
 	@Override
 	public void sendMail(String mail) {
+		
 		System.out.println("Doğrulama Maili Gönderildi : " + mail);
 	}
 
@@ -54,6 +53,9 @@ public class VerifyCodeManager implements VerifyCodeService {
 		newVerifyCode.setConfirmedDate(Date.valueOf(e));
 		verifyCodeDao.save(newVerifyCode);
 		return new SuccessResult("Doğrulama Başarılı");	
+		
+		
+		
 		
 	}
 

@@ -1,6 +1,4 @@
 package com.hrms.hrms.entities.concretes;
-
-
 import java.sql.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,12 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Data;
@@ -34,8 +29,8 @@ public class VerifyCode {
 	@JsonIgnore
 	private int id;
 	
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "user_id", nullable = false)
+	@ManyToOne(targetEntity = User.class ,fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "user_id", referencedColumnName =  "id" ,nullable = false)
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JsonIgnore
 	private User userId;

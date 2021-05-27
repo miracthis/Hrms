@@ -8,10 +8,14 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
 public class ValidationExceptionHandler {
-	
+
 	@ExceptionHandler(MethodArgumentNotValidException.class)
+	
 	public ResponseEntity<?> customValidationErrorHandling(MethodArgumentNotValidException exception){
-		ValidationError validationError = new ValidationError(false, "Doğrulama Hatası", exception.getBindingResult().getFieldError().getDefaultMessage());
+		ValidationError validationError = new ValidationError
+				(false, "Doğrulama Hatası", exception.getBindingResult().getFieldError().getDefaultMessage());
+		
+		
 		return new ResponseEntity<>(validationError, HttpStatus.BAD_REQUEST);
 		
 		

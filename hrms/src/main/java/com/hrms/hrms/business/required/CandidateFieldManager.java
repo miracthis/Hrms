@@ -40,7 +40,7 @@ public class CandidateFieldManager implements FieldService<Candidate> {
 	@Override
 	public Result verifyData(Candidate candidate) {
 		
-		if (this.verifyApiService.ApiControl(candidate)==false) {
+		if (!this.verifyApiService.ApiControl(candidate)) {
 			return new ErrorResult("Mernis Kimlik Doğrulaması Başarısız Oldu");
 		}
 		if (this.userDao.existsByMail(candidate.getMail())) {
@@ -49,7 +49,7 @@ public class CandidateFieldManager implements FieldService<Candidate> {
 		if (candidatesDao.existsByNationalIdentity(candidate.getNationalIdentity())) {
 			return new ErrorResult("TC Kimlik Numarası Daha Önce Kullanıldı");
 		}		
-		if (candidate.getPassword().equals(candidate.getPasswordRepeat()) == false) {
+		if (!candidate.getPassword().equals(candidate.getPasswordRepeat())) {
 			return new ErrorResult("Şifreler Uyuşmuyor");
 		}
 		this.candidatesDao.save(candidate);
