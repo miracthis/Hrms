@@ -38,5 +38,7 @@ public class Candidate extends User {
 	@NotBlank(message="Doğum Yılı Alanı Boş Olamaz")
 	@Column(name="birth_year")
 	private String birth_year;
+	
+	
 
 }

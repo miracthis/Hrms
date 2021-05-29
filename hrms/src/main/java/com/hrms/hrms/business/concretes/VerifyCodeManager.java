@@ -8,6 +8,7 @@ import com.hrms.hrms.business.abstracts.VerifyCodeService;
 import com.hrms.hrms.core.utilities.results.ErrorResult;
 import com.hrms.hrms.core.utilities.results.Result;
 import com.hrms.hrms.core.utilities.results.SuccessResult;
+import com.hrms.hrms.dataAccess.abstracts.UserDao;
 import com.hrms.hrms.dataAccess.abstracts.VerifyCodeDao;
 import com.hrms.hrms.entities.concretes.User;
 import com.hrms.hrms.entities.concretes.VerifyCode;
@@ -16,11 +17,13 @@ import com.hrms.hrms.entities.concretes.VerifyCode;
 public class VerifyCodeManager implements VerifyCodeService {
 
 	private VerifyCodeDao verifyCodeDao;
+	private UserDao userDao;
 	
 	@Autowired
-	public VerifyCodeManager(VerifyCodeDao verifyCodeDao) {
+	public VerifyCodeManager(VerifyCodeDao verifyCodeDao, UserDao userDao) {
 		super();
 		this.verifyCodeDao = verifyCodeDao;
+		this.userDao = userDao;
 	}
 
 	@Override
@@ -48,15 +51,20 @@ public class VerifyCodeManager implements VerifyCodeService {
 			return new ErrorResult("Hatalı Doğrulama İşlemi");
 		}
 		VerifyCode newVerifyCode = verifyCodeDao.getByVerifyCode(code);
+		if (this.verifyCodeDao.getOne(newVerifyCode.getId()).isConfirmed()) {
+			return new ErrorResult("Doğrulama işlemi daha önce yapıldı");
+		}
 		LocalDate e = (LocalDate.now());
 		newVerifyCode.setConfirmed(true);
 		newVerifyCode.setConfirmedDate(Date.valueOf(e));
 		verifyCodeDao.save(newVerifyCode);
+		User verifyUser = new User();
+		verifyUser = userDao.getOne(newVerifyCode.getUserId().getId());
+		verifyUser.setVerify(true);
+		userDao.save(verifyUser);
 		return new SuccessResult("Doğrulama Başarılı");	
 		
-		
-		
-		
+			
 	}
 
 	

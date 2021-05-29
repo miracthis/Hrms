@@ -13,6 +13,10 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 import lombok.Data;
 
 
@@ -39,8 +43,11 @@ public class User {
 	
 	@NotBlank(message="Şifre Alanı Boş olamaz")
 	@Transient
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private String passwordRepeat;
 	
-	
+	@JsonIgnore
+	@Column(name="verify")
+	private boolean verify = false;
 
 }
