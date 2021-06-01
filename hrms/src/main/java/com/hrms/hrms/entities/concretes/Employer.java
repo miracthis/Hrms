@@ -29,6 +29,7 @@ public class Employer extends User{
 	@Column(name="web_address")
 	private String webAddress;
 	
+	
 	@NotBlank(message="Telefon Numarası Alanı Boş Olamaz")
 	@Column(name="phone_number")
 	private String phoneNumber;

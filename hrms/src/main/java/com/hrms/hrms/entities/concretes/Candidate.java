@@ -6,6 +6,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -18,6 +20,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @Table(name="candidate_users")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Candidate extends User {
 	
 	@NotBlank(message="İsim Alanı Boş olamaz")
