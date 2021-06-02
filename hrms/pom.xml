@@ -101,6 +101,11 @@
     			<artifactId>commons-lang</artifactId>
     			<version>2.6</version>
 		</dependency>
+		<dependency>
+			<groupId>com.cloudinary</groupId>
+			<artifactId>cloudinary-http44</artifactId>
+			<version>1.29.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>

@@ -18,6 +18,7 @@ public class ResumeHelper {
 	private EducationDao educationDao; 
 	private TechnologyDao technologyDao;
 	private LanguageDao languageDao;
+	private JobExperienceDao jobExperienceDao;
 	public ResumeHelper(EducationDao educationDao, TechnologyDao technologyDao, LanguageDao languageDao,
 			JobExperienceDao jobExperienceDao) {
 		super();
@@ -27,7 +28,7 @@ public class ResumeHelper {
 		this.jobExperienceDao = jobExperienceDao;
 	}
 
-	private JobExperienceDao jobExperienceDao;
+	
 
 	
 	public void setAllResumeId(List<Education> edu, List<Language> lang, List<Technology> tech, List<JobExperience> exp, Resume resume) {
