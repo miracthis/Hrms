@@ -40,6 +40,7 @@ public class ResumeController {
 	@PostMapping("/add")
 	public Result add(@Valid @RequestBody Resume resume) {
 		return this.resumeService.add(resume);
+				
 	  }
 	
 	

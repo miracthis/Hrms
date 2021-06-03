@@ -38,13 +38,6 @@ public class ResumeManager implements ResumeService {
 		resumeDao.save(resume);
 		return new SuccessResult("Kayıt Başarılı");
 		
-
-		/*Resume resea = resumeDao.save(resume);
-		ResumeHelper helper = new ResumeHelper();
-		helper.setAllResumeId
-		(resea.getEducation(), resea.getLanguages(), 
-		resea.getTechnologies(), resea.getJobExperiences(), resea);
-		return new SuccessResult("Kayıt Başarılı");*/
 	}
 
 
@@ -55,7 +48,10 @@ public class ResumeManager implements ResumeService {
 
 	@Override
 	public Result saveImage(MultipartFile file, int resumeId) {
-		Map<String, String> uploader = (Map<String, String>) cloudinaryService.save(file).getData(); 
+		
+		
+		Map<String, String> uploader = (Map<String, String>) 
+				cloudinaryService.save(file).getData(); 
 		String imageUrl= uploader.get("url");
 		Resume Cv = resumeDao.getOne(resumeId);
 		Cv.setPhoto(imageUrl);
