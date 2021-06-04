@@ -1,6 +1,8 @@
 package com.hrms.hrms.entities.concretes;
 import java.sql.Date;
 import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -53,16 +55,16 @@ public class Resume {
 	private boolean isActive=true;
 	
 	
-	 @OneToMany(mappedBy = "resume" ) 
+	 @OneToMany(mappedBy = "resume", cascade = CascadeType.ALL ) 
 	 private List<Language> languages;
 	  
-	 @OneToMany(mappedBy = "resume" ) 
+	 @OneToMany(mappedBy = "resume", cascade = CascadeType.ALL ) 
 	 private List<Technology> technologies;
 	  
-	 @OneToMany(mappedBy = "resume" ) 
+	 @OneToMany(mappedBy = "resume", cascade = CascadeType.ALL ) 
 	 private List<Education> education;
 	 
-	 @OneToMany(mappedBy = "resume" ) 
+	 @OneToMany(mappedBy = "resume", cascade = CascadeType.ALL ) 
 	 private List<JobExperience> jobExperiences;
 	 
 	

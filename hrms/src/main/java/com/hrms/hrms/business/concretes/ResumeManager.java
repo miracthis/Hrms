@@ -35,6 +35,19 @@ public class ResumeManager implements ResumeService {
 
 	@Override
 	public Result add(Resume resume) {
+		if (resume.getLanguages() != null) {
+			resume.getLanguages().forEach(lang -> lang.setResume(resume));
+		}
+		if (resume.getEducation() != null) {
+			resume.getEducation().forEach(lang -> lang.setResume(resume));
+		}
+		if (resume.getTechnologies() != null) {
+			resume.getTechnologies().forEach(lang -> lang.setResume(resume));
+		}
+		if (resume.getJobExperiences() != null) {
+			resume.getJobExperiences().forEach(lang -> lang.setResume(resume));
+		}
+				
 		resumeDao.save(resume);
 		return new SuccessResult("Kayıt Başarılı");
 		
