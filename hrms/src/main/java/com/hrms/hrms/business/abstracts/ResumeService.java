@@ -6,13 +6,13 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.hrms.hrms.core.utilities.results.DataResult;
 import com.hrms.hrms.core.utilities.results.Result;
-import com.hrms.hrms.entities.concretes.Resume;
+import com.hrms.hrms.entities.dtos.ResumeDto;
 
 public interface ResumeService {
 
-	Result add(Resume resume);
+	Result add(ResumeDto resumeDto);
 	
-	DataResult<List<Resume>> getAll();
+	DataResult<List<ResumeDto>> getAll();
 	
 	Result saveImage(MultipartFile file, int resumeId);
 }

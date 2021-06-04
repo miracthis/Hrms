@@ -1,6 +1,5 @@
 package com.hrms.hrms.business.concretes;
 import java.util.List;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.hrms.hrms.business.abstracts.JobPostingService;
@@ -20,26 +19,17 @@ public class JobPostingManager implements JobPostingService {
 	
 	private JobPostingDao jobPostingDao;
 	private DtoConverterService dtoConverterService;
-	private ModelMapper modelMapper;
-	
+		
 	@Autowired
-	public JobPostingManager(JobPostingDao jobPostingDao, ModelMapper modelMapper, DtoConverterService dtoConverterService) {
+	public JobPostingManager(JobPostingDao jobPostingDao, DtoConverterService dtoConverterService) {
 		super();
 		this.jobPostingDao = jobPostingDao;
-		this.modelMapper = modelMapper;
 		this.dtoConverterService=dtoConverterService;
-	}
-	
-	
-	
-	private JobPosting dtoConvert(JobPostingAddDto jobPostingAddDto) {
-		return modelMapper.map(jobPostingAddDto, JobPosting.class);
-		
 	}
 	
 	@Override
 	public Result add(JobPostingAddDto jobPostingAddDto) {
-		this.jobPostingDao.save(dtoConvert(jobPostingAddDto));
+		this.jobPostingDao.save((JobPosting) dtoConverterService.dtoClassConverter(jobPostingAddDto, JobPosting.class));
 		return new SuccessResult("İş İlanı Eklendi");
 	}
 	@Override
@@ -50,7 +40,7 @@ public class JobPostingManager implements JobPostingService {
 	@Override
 	public DataResult<List<JobPostingDto>> findByIsActive() {
 		return new SuccessDataResult<List<JobPostingDto>>(dtoConverterService.dtoConverter
-				(jobPostingDao.findByIsActive(true), JobPostingDto.class));
+				(jobPostingDao.findByIsActive(true), JobPostingDto.class),"Aktif İş İlanları Listelendi");
 		
 	}
 	@Override

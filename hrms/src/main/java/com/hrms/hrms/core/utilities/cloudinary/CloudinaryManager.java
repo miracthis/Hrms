@@ -21,6 +21,7 @@ public class CloudinaryManager implements CloudinaryService {
 	}
 
 
+	@SuppressWarnings("rawtypes")
 	@Override
 	public DataResult<?> save(MultipartFile file) {
 		 try{

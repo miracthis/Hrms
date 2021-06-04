@@ -1,23 +1,18 @@
 package com.hrms.hrms.entities.dtos;
-
 import java.sql.Date;
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.hrms.hrms.entities.concretes.Candidate;
-import com.hrms.hrms.entities.concretes.Education;
-import com.hrms.hrms.entities.concretes.JobExperience;
-import com.hrms.hrms.entities.concretes.Language;
-import com.hrms.hrms.entities.concretes.Technology;
-
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class ResumeDto {
 	
-	@JsonIgnore
+	@JsonProperty(access = Access.READ_ONLY)
 	private int id;
 	private int candidateId;
 	private String githubLink;
