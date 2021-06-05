@@ -10,11 +10,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.hrms.hrms.business.abstracts.JobExperienceService;
 import com.hrms.hrms.core.utilities.results.DataResult;
 import com.hrms.hrms.core.utilities.results.Result;
-import com.hrms.hrms.entities.concretes.JobExperience;
+import com.hrms.hrms.entities.dtos.JobExperienceDto;
 
 
 @RestController
@@ -31,14 +30,18 @@ public class JobExperienceController {
 
 
 	@GetMapping("/getall")
-	public DataResult<List<JobExperience>> getAll(){
+	public DataResult<List<JobExperienceDto>> getAll(){
 		return this.jobExperienceService.getAll();
 	}
 	
-	
+	@GetMapping("/getOrderByDate")
+	public DataResult<List<JobExperienceDto>> findAllByResumeIdOrderByEndedDateDesc(int id){
+		return this.jobExperienceService.findAllByResumeIdOrderByEndedDateDesc(id);
+	}
+		
 	@PostMapping("/add")
-	public Result add(@Valid @RequestBody JobExperience jobExperience) {
-		return this.jobExperienceService.add(jobExperience);
+	public Result add(@Valid @RequestBody JobExperienceDto jobExperienceDto) {
+		return this.jobExperienceService.add(jobExperienceDto);
 	  }
 	
 }

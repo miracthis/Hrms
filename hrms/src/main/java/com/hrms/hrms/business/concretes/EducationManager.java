@@ -37,4 +37,10 @@ public class EducationManager implements EducationService{
 		
 	}
 
+	@Override
+	public DataResult<List<EducationDto>> findAllByResumeIdOrderByEndedDateDesc(int id) {
+		return new SuccessDataResult<List<EducationDto>>(dtoConverterService.dtoConverter(educationDao.findAllByResumeIdOrderByEndedDateDesc(id), EducationDto.class));
+	}
+
+	
 }

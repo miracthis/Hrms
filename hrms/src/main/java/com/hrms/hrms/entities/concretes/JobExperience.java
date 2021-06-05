@@ -32,7 +32,7 @@ public class JobExperience {
 	@JoinColumn(name="resume_id")
 	private Resume resume;
 	
-	@NotBlank(message="Boş Geçilemez")
+	@NotBlank(message="Şirket İsmi Boş Geçilemez")
 	@Column(name="company_name")
 	private String companyName;
 	

@@ -16,7 +16,8 @@ import com.hrms.hrms.core.utilities.results.SuccessResult;
 
 import com.hrms.hrms.dataAccess.abstracts.ResumeDao;
 import com.hrms.hrms.entities.concretes.Resume;
-import com.hrms.hrms.entities.dtos.ResumeDto;
+import com.hrms.hrms.entities.dtos.ResumeAddDto;
+import com.hrms.hrms.entities.dtos.ResumeGetDto;
 
 @Service
 public class ResumeManager implements ResumeService {
@@ -37,7 +38,7 @@ public class ResumeManager implements ResumeService {
 
 
 	@Override
-	public Result add(ResumeDto resumeDto) {
+	public Result add(ResumeAddDto resumeDto) {
 //		if (resume.getLanguages() != null) {
 //			resume.getLanguages().forEach(lang -> lang.setResume(resume));
 //		}
@@ -58,10 +59,10 @@ public class ResumeManager implements ResumeService {
 
 
 	@Override
-	public DataResult<List<ResumeDto>> getAll() {
-		return new SuccessDataResult<List<ResumeDto>>
+	public DataResult<List<ResumeGetDto>> getAll() {
+		return new SuccessDataResult<List<ResumeGetDto>>
 		(dtoConverterService.dtoConverter
-				(resumeDao.findAll(), ResumeDto.class)
+				(resumeDao.findAll(), ResumeGetDto.class)
 				,"Data Listelendi");
 		
 	}
@@ -79,6 +80,15 @@ public class ResumeManager implements ResumeService {
 		resumeDao.save(Cv);
 		return new SuccessResult("Kayıt Başarılı");
 		
+	}
+
+
+	@Override
+	public DataResult<List<ResumeGetDto>> findAllByCandidateId(int id) {
+		return new SuccessDataResult<List<ResumeGetDto>>
+		(dtoConverterService.dtoConverter
+				(resumeDao.findAllByCandidateId(id), ResumeGetDto.class)
+				,"Data Listelendi");
 	}
 	
 	

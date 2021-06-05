@@ -38,6 +38,10 @@ public class EducationController {
 		return this.educationService.getAll();
 	}
 	
+	@GetMapping("/getOrderByDate")
+	public DataResult<List<EducationDto>> findAllByResumeIdOrderByEndedDateDesc(int id){
+		return this.educationService.findAllByResumeIdOrderByEndedDateDesc(id);
+	}
 	
 	@PostMapping("/add")
 	public Result add(@Valid @RequestBody EducationDto educationDto) {

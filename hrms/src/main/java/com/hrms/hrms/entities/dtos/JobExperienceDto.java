@@ -1,13 +1,8 @@
 package com.hrms.hrms.entities.dtos;
 
 import java.sql.Date;
-
-
-
+import javax.validation.constraints.Past;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty.Access;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,19 +10,15 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class EducationDto {
-	
+public class JobExperienceDto {
+
 	@JsonIgnore
 	private int id;
 	private int resumeId;
-	private String schoolName;
-	@JsonProperty(access = Access.WRITE_ONLY)
-	private int graduateId;
-	private String graduateDescription;
-	private String schoolDepartment;
+	private String companyName;
+	@Past(message="Başlangıç tarihi bugünden sonra olamaz")
 	private Date startedDate;
 	private Date endedDate;
-	private Date createdDate;
+	private int jobTitleId;
 	
-
 }

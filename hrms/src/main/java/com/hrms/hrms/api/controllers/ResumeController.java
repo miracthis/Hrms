@@ -13,7 +13,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.hrms.hrms.business.abstracts.ResumeService;
 import com.hrms.hrms.core.utilities.results.DataResult;
 import com.hrms.hrms.core.utilities.results.Result;
-import com.hrms.hrms.entities.dtos.ResumeDto;
+import com.hrms.hrms.entities.dtos.ResumeAddDto;
+import com.hrms.hrms.entities.dtos.ResumeGetDto;
 
 @RestController
 @RequestMapping(value= "api/resumes")
@@ -28,14 +29,18 @@ public class ResumeController {
 	}
 	
 	@GetMapping("/getall")
-	public DataResult<List<ResumeDto>> getAll(){
+	public DataResult<List<ResumeGetDto>> getAll(){
 		return this.resumeService.getAll();
 	}
 	
+	@GetMapping("/getByCandidateId")
+	public DataResult<List<ResumeGetDto>> findAllByCandidateId(int id){
+		return this.resumeService.findAllByCandidateId(id);
+	}
 	
 		
 	@PostMapping(value="/add")
-	public Result add(@Valid @RequestBody ResumeDto resumeDto) {
+	public Result add(@Valid @RequestBody ResumeAddDto resumeDto) {
 		return this.resumeService.add(resumeDto);
 				
 	  }
