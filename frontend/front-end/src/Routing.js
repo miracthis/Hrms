@@ -17,12 +17,6 @@ export const routes = [
     title: "Candidate",
     isHeaderElement: true,
   },
-  {
-    path: "/staff",
-    exact: true,
-    component: <Staff/>,
-    title: "Staff",
-    isHeaderElement: true,
-  },
+ 
   
 ];

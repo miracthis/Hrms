@@ -1,18 +1,10 @@
 import React from 'react'
 import {
-    Button,
-    Dropdown,
     Container,
-    Divider,
     Grid,
     Header,
-    Icon,
-    Image,
     List,
-    Menu,
     Segment,
-    Sidebar,
-    Visibility,
   } from 'semantic-ui-react'
 
 export default function Footer() {

@@ -10,10 +10,12 @@ import {
 export default function Navi() {
   return (
     <div>
+
+      
       <Menu size="massive">
         
         {routes.map(route=> (
-            <Menu.Item name = {route.title}> <Link to = {route.path}>{route.title}</Link> </Menu.Item>
+            <Menu.Item key={route.title} name = {route.title}> <Link to = {route.path}>{route.title}</Link> </Menu.Item>
         ) ) }
         
         

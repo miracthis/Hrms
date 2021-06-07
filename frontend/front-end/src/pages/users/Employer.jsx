@@ -10,6 +10,7 @@ export default function Employer() {
         employerService.getEmployer().then(sonuc => setEmployers(sonuc.data.data));},[])
      return (
          <div>
+          
               <Table style = {{margin: "5em"}}>
      <Table.Header>
        <Table.Row>
@@ -18,8 +19,8 @@ export default function Employer() {
          <Table.HeaderCell>Web Site</Table.HeaderCell>
        </Table.Row>
      </Table.Header>
- 
- 
+    
+     
      <Table.Body>
          {
          employers.map(employer => (
@@ -33,5 +34,7 @@ export default function Employer() {
      
    </Table>
          </div>
+
+         
      )
 }
