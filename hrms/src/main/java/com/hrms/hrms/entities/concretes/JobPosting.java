@@ -55,7 +55,7 @@ public class JobPosting {
 	private Date closedDate;
 	
 	@Column(name="is_active")
-	private boolean isActive=false;
+	private boolean isActive=true;
 	
 	@ManyToOne(targetEntity = Employer.class ,fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "employer_id", referencedColumnName =  "user_id" ,nullable = false)
