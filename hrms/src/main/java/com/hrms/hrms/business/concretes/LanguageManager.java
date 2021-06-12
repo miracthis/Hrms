@@ -29,7 +29,7 @@ public class LanguageManager implements LanguageService {
 
 	@Override
 	public Result add(LanguageDto languageDto) {
-		languageDao.save((Language) dtoConverterService.dtoClassConverter(languageDto, LanguageDto.class));
+		languageDao.save((Language) dtoConverterService.dtoClassConverter(languageDto, Language.class));
 		return new SuccessResult("Başarıyla Eklendi");
 	}
 

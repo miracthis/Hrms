@@ -1,7 +1,6 @@
 package com.hrms.hrms.entities.dtos;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
+import java.sql.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,11 +10,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class LanguageDto {
 	
-	@JsonIgnore
-	private int id;
+	
 	private int resumeId;
 	private String language;
 	private char langLevel;
+	private Date createdDate;
 	
 
 }
