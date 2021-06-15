@@ -25,4 +25,6 @@ public class ConfirmEmployerController {
 		
 		return confirmEmployerService.confirmUser(companyName);
 	}
+	
+
 }
