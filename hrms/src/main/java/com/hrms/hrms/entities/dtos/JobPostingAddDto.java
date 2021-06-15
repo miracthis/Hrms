@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class JobPostingAddDto {
 
-	@JsonIgnore
+	
 	private int id;
 	private int employerId;
 	private int jobPositionId;
